@@ -23,7 +23,7 @@ fun main() {
 }
 fun getElvesKcalList(input: List<String>): MutableList<Int> {
     val elvesKcal = mutableListOf<Int>(0)
-    // ensures that list finished with blank line
+    // ensures that list finishes with blank line
     val inputSpace = mutableListOf<String>()
     inputSpace.addAll(input)
     inputSpace.add("")
