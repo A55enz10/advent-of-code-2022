@@ -17,9 +17,6 @@ fun main() {
     val input = readInput("Day01")
     println(part1(input))
     println(part2(input))
-
-    check(part1(input) == 71934)
-    check(part2(input) == 211447)
 }
 
 fun getElvesKcalList(input: List<String>): MutableList<Int> {
@@ -31,9 +28,7 @@ fun getElvesKcalList(input: List<String>): MutableList<Int> {
             sum = 0
         } else {
             sum += s.toInt()
-            if (input.size == index+1) {
-                elvesKcal.add(sum)
-            }
+            if (input.size == index+1) elvesKcal.add(sum)
         }
     }
     return elvesKcal
