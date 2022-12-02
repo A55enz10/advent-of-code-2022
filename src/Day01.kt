@@ -21,19 +21,20 @@ fun main() {
     check(part1(input) == 71934)
     check(part2(input) == 211447)
 }
+
 fun getElvesKcalList(input: List<String>): MutableList<Int> {
     val elvesKcal = mutableListOf<Int>(0)
-    // ensures that list finishes with blank line
-    val inputSpace = mutableListOf<String>()
-    inputSpace.addAll(input)
-    inputSpace.add("")
-
     var sum: Int = 0
-    inputSpace.stream().forEachOrdered({
-        if (it.isNullOrEmpty()) {
+    input.forEachIndexed { index, s ->
+        if (s.isNullOrEmpty()) {
             elvesKcal.add(sum)
             sum = 0
-        } else sum += it.toInt()
-    })
+        } else {
+            sum += s.toInt()
+            if (input.size == index+1) {
+                elvesKcal.add(sum)
+            }
+        }
+    }
     return elvesKcal
 }
