@@ -6,7 +6,7 @@ fun main() {
     fun part2(input: List<String>): Int {
         val elvesKcal = getElvesKcalList(input)
         elvesKcal.sortDescending()
-        return elvesKcal.get(0) + elvesKcal.get(1) + elvesKcal.get(2)
+        return elvesKcal[0] + elvesKcal[1] + elvesKcal[2]
     }
     
     // test if implementation meets criteria from the description, like:
@@ -23,10 +23,10 @@ fun main() {
 }
 
 fun getElvesKcalList(input: List<String>): MutableList<Int> {
-    val elvesKcal = mutableListOf<Int>(0)
-    var sum: Int = 0
+    val elvesKcal = mutableListOf<Int>()
+    var sum = 0
     input.forEachIndexed { index, s ->
-        if (s.isNullOrEmpty()) {
+        if (s.isEmpty()) {
             elvesKcal.add(sum)
             sum = 0
         } else {
