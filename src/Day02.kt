@@ -41,7 +41,7 @@ class Game {
 
         // rotate the wheel until the player1 sign is center
         Collections.rotate(comparatorWheel, 1-comparatorWheel.indexOf(signPlayer1))
-        when (comparatorWheel.indexOf(signPlayer1).compareTo(comparatorWheel.indexOf(signPlayer2))) {
+        when (1.compareTo(comparatorWheel.indexOf(signPlayer2))) {
             -1 -> scorePlayer2 += 6
             0 -> {
                 scorePlayer1 += 3
