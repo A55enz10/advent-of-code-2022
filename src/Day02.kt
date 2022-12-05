@@ -18,13 +18,34 @@ fun main() {
         return game.scorePlayer2
     }
 
-//    fun part2(input: List<String>): Int {
-//        return 0
-//    }
+    fun getValueToPlay(signs: List<String>): Sign? {
+        
+        val valueToSignP1 = mapOf("A" to Sign.ROCK, "B" to Sign.PAPER, "C" to Sign.SCISSORS)
+        val signToWin = mapOf(Sign.SCISSORS to Sign.ROCK, Sign.ROCK to Sign.PAPER, Sign.PAPER to Sign.SCISSORS)
+        val signToLose = mapOf(Sign.SCISSORS to Sign.PAPER, Sign.ROCK to Sign.SCISSORS, Sign.PAPER to Sign.ROCK)
+
+        return when (signs[1]) {
+            "X" -> signToLose[valueToSignP1[signs[0]]]
+            "Z" -> signToWin[valueToSignP1[signs[0]]]
+            else -> valueToSignP1[signs[0]]
+        }
+    }
+
+    fun part2(input: List<String>): Int {
+        val valueToSignP1 = mapOf("A" to Sign.ROCK, "B" to Sign.PAPER, "C" to Sign.SCISSORS)
+
+        val game = Game()
+        input.forEach {
+            val signs = it.split(" ")
+            game.playRound(valueToSignP1[signs[0]], getValueToPlay(signs))
+        }
+
+        return game.scorePlayer2
+    }
     
     val input = readInput("Day02")
     println(part1(input))
-//    println(part2(input))
+    println(part2(input))
 
 }
 
@@ -32,7 +53,7 @@ class Game {
     private val pointPerSign: Map<Sign, Int> = mapOf(Sign.ROCK to 1, Sign.PAPER to 2, Sign.SCISSORS to 3)
 
     private var comparatorWheel = listOf(Sign.ROCK, Sign.PAPER, Sign.SCISSORS)
-    var scorePlayer1 = 0
+    private var scorePlayer1 = 0
     var scorePlayer2 = 0
 
     fun playRound(signPlayer1: Sign?, signPlayer2: Sign?) {
