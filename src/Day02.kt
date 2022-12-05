@@ -18,16 +18,15 @@ fun main() {
         return game.scorePlayer2
     }
 
-    fun getValueToPlay(signs: List<String>): Sign? {
+    fun getValueToPlay(sign1: Sign?, s2: String): Sign? {
         
-        val valueToSignP1 = mapOf("A" to Sign.ROCK, "B" to Sign.PAPER, "C" to Sign.SCISSORS)
         val signToWin = mapOf(Sign.SCISSORS to Sign.ROCK, Sign.ROCK to Sign.PAPER, Sign.PAPER to Sign.SCISSORS)
         val signToLose = mapOf(Sign.SCISSORS to Sign.PAPER, Sign.ROCK to Sign.SCISSORS, Sign.PAPER to Sign.ROCK)
 
-        return when (signs[1]) {
-            "X" -> signToLose[valueToSignP1[signs[0]]]
-            "Z" -> signToWin[valueToSignP1[signs[0]]]
-            else -> valueToSignP1[signs[0]]
+        return when (s2) {
+            "X" -> signToLose[sign1]
+            "Z" -> signToWin[sign1]
+            else -> sign1
         }
     }
 
@@ -37,7 +36,7 @@ fun main() {
         val game = Game()
         input.forEach {
             val signs = it.split(" ")
-            game.playRound(valueToSignP1[signs[0]], getValueToPlay(signs))
+            game.playRound(valueToSignP1[signs[0]], getValueToPlay(valueToSignP1[signs[0]], signs[1]))
         }
 
         return game.scorePlayer2
