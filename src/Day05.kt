@@ -4,8 +4,11 @@ fun main() {
         val supplies = getInitialStacks(input)
         val instructions = getInstructions(input)
         
-        instructions.forEach {
-            val (quantity, fromStack, toStack) = it
+        instructions.forEach { 
+            val quantity = it[0]
+            val fromStack = it[1]-1
+            val toStack = it[2]-1
+            
             for (i in 1..quantity) {
                 supplies[toStack].add(supplies[fromStack].removeLast())
             }
@@ -22,8 +25,12 @@ fun main() {
         val instructions = getInstructions(input)
 
         instructions.forEach {
-            val (quantity, fromStack, toStack) = it
+            val quantity = it[0]
+            val fromStack = it[1]-1
+            val toStack = it[2]-1
+
             val buffer = ArrayDeque<String>()
+            
             for (i in 1..quantity) {
                 buffer.add(supplies[fromStack].removeLast())
             }
