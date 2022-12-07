@@ -1,44 +1,7 @@
 fun main() {
 
     fun part1(input: List<String>): Int {
-        
-        val filesystem = getFilesystem(input)
-
-//        var dirsByPath = mutableMapOf<String, MutableList<Directory>>()
-//        filesystem.directoryList.forEach{
-//            var msg = it.getSize().toString()
-//            while (msg.length<10) msg += " "
-//            println(msg + it.fullPath.substring(0)+it.name) 
-//
-//            if (!dirsByPath.contains(it.fullPath)) {
-//                dirsByPath.put(it.fullPath, mutableListOf<Directory>())
-//            }
-//            dirsByPath.get(it.fullPath)?.add(it);
-//        }
-//
-//        return dirsByPath.map { dirList-> dirList.value.sumOf { dir -> dir.getSize() }}
-//            .filter { it <= 100000 } // 1412615
-//            .sumOf { it }
-//        
-//        var filesByPath = mutableMapOf<String, MutableList<File>>()
-//        filesystem.fileList.forEach{
-//            var msg = it.getSize().toString()
-//            while (msg.length<10) msg += " "
-//            println(msg + it.fullPath.substring(2)+it.name) 
-//            
-//            if (!filesByPath.contains(it.fullPath)) {
-//                filesByPath.put(it.fullPath, mutableListOf<File>())
-//            }
-//            filesByPath.get(it.fullPath)?.add(it);
-//        }
-//        
-//        return filesByPath.map { fileList-> fileList.value.sumOf { file -> file.getSize() }}
-//            .filter { it <= 100000 } // 1412615
-//            .sumOf { it }
-//
-//        
-        return filesystem.directoryList.filter { dir -> dir.getSize() <= 100000 }.sumOf { dir -> dir.getSize() }
-        
+        return getFilesystem(input).directoryList.filter { dir -> dir.getSize() <= 100000 }.sumOf { dir -> dir.getSize() }
     }
 
     fun part2(input: List<String>): Int {
@@ -62,8 +25,6 @@ fun getFilesystem(input: List<String>): MyFileSystem {
                 if (nextDirName.equals("..")) {
                     // go up one directory
                     currentDir = currentDir.parent?:currentDir
-                }else if (nextDirName.equals(currentDir.name)) {
-                    // do nothing, already there
                 } else {
                     // go down one directory
                     currentDir = currentDir.subdirectories
